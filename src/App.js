@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+// Components
+import { useState } from 'react';
+import Game from './components/Game';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+// css
+import './styles/css/App.css'
+
+// images
+
+const App = () => {
+
+   let [pontuation, setPontuation] = useState(0);
+
+   return (
+      <>
+         <p className='pontuation'>{pontuation}</p>
+         <Game />
+         <footer>Desenvolvido por &copy;Guilherme Ferreira</footer>
+      </>
+   );
+};
 
 export default App;
