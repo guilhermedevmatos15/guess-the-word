@@ -64,7 +64,8 @@ const Game = (props) => {
 
    function success(letterInput, scoreCurrent) {
       letterInput = letterInput.toUpperCase();
-
+      
+      setInputValue('');
       if (!haveYouTriedLyrics(letterInput)) {
          setScore(score + scoreCurrent);
          addLetterForUsed(letterInput);
@@ -80,6 +81,7 @@ const Game = (props) => {
    }
 
    function error(letterInput) {
+      setInputValue('');
       if (!haveYouTriedLyrics(letterInput)) {
          addLetterForUsed(letterInput);
          decreaseAttempts();
@@ -133,6 +135,7 @@ const Game = (props) => {
                maxLength={1}
                minLength={1}
                required
+               value={inputValue}
                onChange={(e) => {
                   setInputValue(e.target.value.toUpperCase());
                }}
