@@ -20,12 +20,25 @@ const Game = (props) => {
    let [attempts, setAttempts] = useState(3);
    let [inputValue, setInputValue] = useState('');
    let [gameOver, setGameOver] = useState(false);
+   let [gameWinner, setGameWinner] = useState(false);
+   let [isWordComplete, setIsWordComplete] = useState(false);
    let [usedLetters, setUsedLetters] = useState([]);
+   let [rightLetters, setRightLetters] = useState([]);
 
    function getRandomIntInclusive(min=0, max=0) {
       min = Math.ceil(min);
       max = Math.floor(max);
       return Math.floor(Math.random() * (max - min + 1)) + min;
+   }
+
+   function checkIfWon() {
+      const word = myWord.split('');
+      for (let i = 0; i < word.length; i++) {
+         if (!rightLetters.includes(word[i])) {
+            return false;
+         }
+      }
+      return true;
    }
 
    function clickButton() {
@@ -43,6 +56,9 @@ const Game = (props) => {
          error(inputValue);
       } else {
          success(inputValue, cont);
+         if (checkIfWon()) {
+            setGameWinner(true);
+         }
       }
    }
 
@@ -52,8 +68,17 @@ const Game = (props) => {
       if (!haveYouTriedLyrics(letterInput)) {
          setScore(score + scoreCurrent);
          addLetterForUsed(letterInput);
+         // adicionamos a letra a certa
+         const newRightLetters = [...rightLetters, letterInput.toUpperCase()];
+         setRightLetters(newRightLetters);
+         // verificamos se a palavra está completa
+         const word = myWord.split('');
+         if (newRightLetters.length === word.length) {
+            setIsWordComplete(true);
+         }
       }
    }
+
    function error(letterInput) {
       if (!haveYouTriedLyrics(letterInput)) {
          addLetterForUsed(letterInput);
@@ -96,7 +121,7 @@ const Game = (props) => {
             Dica sobre a palavra: <span>{myTip}</span>
          </h2>
          <p>Você ainda tem {`${attempts} tentativa(s)`}</p>
-         <Word word={myWord} />
+         <Word word={myWord} rightLetters={rightLetters}/>
          <form>
             <label htmlFor="i-letter">
                Tente adivinhar uma letra da palavra:
@@ -127,6 +152,11 @@ const Game = (props) => {
          {gameOver && 
          <Modal setActive={setGameOver} active={gameOver}>
             <h2>Game Over!</h2>
+            <p>Recarregue a página para jogar novamente!</p>
+         </Modal>}
+         {isWordComplete && 
+         <Modal setActive={setGameWinner} active={gameWinner}>
+            <h2>Você venceu!!!</h2>
             <p>Recarregue a página para jogar novamente!</p>
          </Modal>}
       </div>

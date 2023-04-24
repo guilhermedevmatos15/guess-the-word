@@ -6,12 +6,26 @@ import '../styles/css/Word.css'
 
 const Word = props => {
 
+   const {rightLetters} = props;
+
+   function renderClassName(letter) {
+      let result = '';
+      rightLetters.forEach((letterTrue) => {
+         if (letter === letterTrue) {
+            result = 'active';
+         }
+      });
+
+      return result ? result : '';
+   }
+
    function renderWord(word) {
       word = String(word).split('');
+
       return word.map((letter, index) => {
          return (
             <span 
-               className='letter'
+               className={`letter ${renderClassName(letter)}`}
                key={`${letter}_${index}`}
             >
                {letter}
