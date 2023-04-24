@@ -1,0 +1,29 @@
+.Word {
+   width: auto;
+   height: auto;
+   padding: 15px 30px;
+   border: 20px solid yellow;
+   font-size: 2rem;
+   text-transform: uppercase;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 5px;
+}
+
+.Word span {
+   width: 20px;
+   height: 20px;
+   background-color: white;
+   padding: 30px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: transparent;
+   cursor: default;
+   user-select: none;
+}
+
+.Word span.active {
+   color: black;
+}

@@ -17,4 +17,7 @@ body {
    width: 100%;
    height: auto;
    font-family: var(--font-default);
+   background-color: rgb(17, 16, 16);
+   color: #ffffff;
+   text-align: center;
 }

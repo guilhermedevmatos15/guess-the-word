@@ -1,13 +1,19 @@
 import React, {useState} from 'react';
 import PropTypes from "prop-types";
 
-const Word = (props) => {
+// components
+import '../styles/css/Word.css'
+
+const Word = props => {
 
    function renderWord(word) {
       word = String(word).split('');
       return word.map((letter, index) => {
          return (
-            <span className='letter' key={`${letter}_`+index}>
+            <span 
+               className='letter'
+               key={`${letter}_${index}`}
+            >
                {letter}
             </span>
          );

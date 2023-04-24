@@ -1,0 +1,16 @@
+.App {
+   width: 100%;
+   height: auto;
+}
+
+.App footer {
+   margin-top: 20px;
+   width: 100%;
+   height: auto;
+   padding: 20px;
+   background-color: #0000ff;
+   color: #ffffff;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
